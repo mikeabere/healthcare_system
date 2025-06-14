@@ -21,7 +21,7 @@ io.on("connection", (socket) => {
 app.set("io", io);
 
 // Middleware
-app.use(express.json());
+app.use(express.json());// middlwware to accept json
 app.use(cors());
 
 // Routes

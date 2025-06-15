@@ -31,7 +31,7 @@ app.use("/api/appointments", require("./routes/appointmentRoutes.js"));
 // Error handling middleware
 app.use(require("./middlewares/error"));
 
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 connectDB().then(() => {
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  app.listen(port, () => console.log(`Server running on port ${PORT}`));
 });

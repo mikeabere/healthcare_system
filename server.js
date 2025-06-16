@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 const app = express();
 const http = require("http");
 const cors = require("cors");
+const morgan = require("morgan");
 const socketio = require("socket.io");
 
 const server = http.createServer(app);
@@ -24,6 +25,14 @@ app.set("io", io);
 app.use(express.json());// middlwware to accept json
 app.use(cors());
 
+if(process.env.NODE_ENV === 'development'){
+   app.use(morgan('dev'));
+}
+
+app.get("/", (req, res) => {
+  res.send("Hello world");
+});
+
 // Routes
 app.use("/api/auth", require("./routes/authRoutes.js"));
 app.use("/api/appointments", require("./routes/appointmentRoutes.js"));
@@ -32,6 +41,7 @@ app.use("/api/appointments", require("./routes/appointmentRoutes.js"));
 app.use(require("./middlewares/error"));
 
 const port = process.env.PORT || 5000;
+
 connectDB().then(() => {
-  app.listen(port, () => console.log(`Server running on port ${PORT}`));
+  app.listen(port, () => console.log(`Server running on port ${port}`));
 });

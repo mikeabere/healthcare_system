@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const AppointmentSchema = new mongoose.Schema({
   patient: {
@@ -16,4 +16,4 @@ const AppointmentSchema = new mongoose.Schema({
   googleCalendarEventId: { type: String }, // For Google Calendar sync
 });
 
-module.exports = mongoose.model("Appointment", AppointmentSchema);
+export default mongoose.model("Appointment", AppointmentSchema);

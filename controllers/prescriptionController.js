@@ -1,5 +1,5 @@
-const cloudinary = require("cloudinary").v2;
-const Prescription = require("../models/Prescription.js");
+import cloudinary from "cloudinary";
+import Prescription from "../models/Prescription.js";
 
 exports.uploadPrescription = async (req, res) => {
   try {

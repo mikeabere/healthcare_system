@@ -1,12 +1,12 @@
-const { google } = require("googleapis");
-const Appointment = require("../models/Appointment.js");
+import { google } from "googleapis";
+import Appointment from "../models/Appointment.js";
 
 const calendar = google.calendar({
   version: "v3",
   auth: process.env.GOOGLE_CALENDAR_API_KEY,
 });
 
-exports.bookAppointment = async (req, res) => {
+export const bookAppointment = async (req, res) => {
   const { doctorId, date } = req.body;
   try {
     // Check doctor availability (custom logic)

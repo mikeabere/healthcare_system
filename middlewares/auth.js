@@ -1,10 +1,10 @@
-const jwt = require("jsonwebtoken");
-const {
+import jwt from "jsonwebtoken";
+import {
   UnauthenticatedError,
   UnauthorizedError,
-} = require("../errors/customError.js");
+} from "../errors/customError.js";
 
-exports.protect = async (req, res, next) => {
+export const protect = async (req, res, next) => {
   let token;
   if (req.headers.authorization?.startsWith("Bearer")) {
     token = req.headers.authorization.split(" ")[1];
@@ -21,7 +21,7 @@ exports.protect = async (req, res, next) => {
 };
 
 // Role-based access control (e.g., only doctors can create slots)
-exports.restrictTo = (...roles) => {
+export const restrictTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       throw new UnauthorizedError("You do not have permission");

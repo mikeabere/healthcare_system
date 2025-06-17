@@ -1,25 +1,19 @@
-const dotenv = require("dotenv");
+import * as dotenv from "dotenv";
 dotenv.config();
-const express = require("express");
-const connectDB = require("./config/db");
+import express from "express";
+import connectDB from "./config/db.js";
 const app = express();
-const http = require("http");
-const cors = require("cors");
-const morgan = require("morgan");
-const socketio = require("socket.io");
+import http from "http";
+import cors from "cors";
+import morgan from "morgan";
 
-const server = http.createServer(app);
-const io = socketio(server);
 
-io.on("connection", (socket) => {
-  console.log("New client connected");
-  socket.on("joinRoom", (userId) => {
-    socket.join(userId); // Doctors/patients get their own rooms
-  });
-});
+//routes
+import authRoutes from"./routes/authRoutes.js";
+import appointmentRoutes from "./routes/appointmentRoutes.js";
+import { log } from "console";
 
-// Integrate with Express
-app.set("io", io);
+
 
 // Middleware
 app.use(express.json());// middlwware to accept json
@@ -29,16 +23,27 @@ if(process.env.NODE_ENV === 'development'){
    app.use(morgan('dev'));
 }
 
+
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/appointments", appointmentRoutes);
+
+// Error handling middleware
+
+
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
 
-// Routes
-app.use("/api/auth", require("./routes/authRoutes.js"));
-app.use("/api/appointments", require("./routes/appointmentRoutes.js"));
+// app.use("*", (req, res) => {
+//   res.status(404).json({ msg: "not found" });
+// });
 
-// Error handling middleware
-app.use(require("./middlewares/error"));
+// app.use((err, req, res, next) => {
+//   console.log(err);
+
+//   res.status(500).json({ msg: "something went wrong" });
+// });
 
 const port = process.env.PORT || 5000;
 

@@ -1,12 +1,12 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const appointmentController = require("../controllers/appointmentController.js");
-const { protect, restrictTo } = require("../middlewares/auth.js");
+import {bookAppointment} from "../controllers/appointmentController.js";
+import { protect, restrictTo } from "../middlewares/auth.js";
 
 // Protected routes
 router.use(protect);
 
-router.post("/", restrictTo("patient"), appointmentController.bookAppointment);
+router.post("/", restrictTo("patient"),bookAppointment);
 // router.get("/my-appointments", appointmentController.getMyAppointments);
 // router.patch("/:id/cancel", appointmentController.cancelAppointment);
 
@@ -21,4 +21,4 @@ router.post("/", restrictTo("patient"), appointmentController.bookAppointment);
 router.use(restrictTo("admin"));
 // router.get("/", appointmentController.getAllAppointments);
 
-module.exports = router;
+export default router;

@@ -1,6 +1,18 @@
-const User = require("../models/User.js");
-const Prescription = require("../models/Prescription.js");
-const Appointment = require("../models/Appointment.js");
+import User from "../models/User.js";
+import Prescription from"../models/Prescription.js";
+import Appointment from "../models/Appointment.js";
+
+
+export const createUser = async (req, res) => {
+ 
+  const user = await User.create(req.body);
+  res.status(201).json({user});
+}
+
+export const getAllusers = async () => {
+  const users = await User.find({});
+  res.status(200).json({users});
+}
 
 // Get current user profile
 exports.getMe = async (req, res, next) => {

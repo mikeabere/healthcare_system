@@ -4,9 +4,14 @@ import Appointment from "../models/Appointment.js";
 
 
 export const createUser = async (req, res) => {
- 
   const user = await User.create(req.body);
   res.status(201).json({user});
+}
+
+export const getCurrentUser = async () => {
+  const user = await User.findOne({_id: req.user.userId});
+  const userwithoutpassword = user.toJSON();
+  res.status(200).json({userwithoutpassword});
 }
 
 export const getAllusers = async () => {

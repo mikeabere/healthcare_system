@@ -3,7 +3,7 @@ dotenv.config();
 import express from "express";
 import connectDB from "./config/db.js";
 const app = express();
-import http from "http";
+//import http from "http";
 import cors from "cors";
 import morgan from "morgan";
 
@@ -11,7 +11,7 @@ import morgan from "morgan";
 //routes
 import authRoutes from"./routes/authRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
-import { log } from "console";
+//import { log } from "console";
 
 
 

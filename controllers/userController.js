@@ -1,11 +1,12 @@
 import User from "../models/User.js";
 import Prescription from"../models/Prescription.js";
 import Appointment from "../models/Appointment.js";
+import { StatusCodes } from "http-status-codes";
 
 
 export const createUser = async (req, res) => {
   const user = await User.create(req.body);
-  res.status(201).json({user});
+  res.status(StatusCodes.CREATED).json({user});
 }
 
 export const getCurrentUser = async () => {

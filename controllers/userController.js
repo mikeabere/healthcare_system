@@ -21,17 +21,17 @@ export const getAllusers = async () => {
 }
 
 // Get current user profile
-exports.getMe = async (req, res, next) => {
-  try {
-    const user = await User.findById(req.user.id).select("-password");
-    res.status(200).json(user);
-  } catch (err) {
-    next(err);
-  }
-};
+// exports.getMe = async (req, res, next) => {
+//   try {
+//     const user = await User.findById(req.user.id).select("-password");
+//     res.status(200).json(user);
+//   } catch (err) {
+//     next(err);
+//   }
+// };
 
 // Update user profile
-exports.updateUser = async (req, res, next) => {
+export const updateUser = async (req, res, next) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.user.id,
@@ -45,7 +45,7 @@ exports.updateUser = async (req, res, next) => {
 };
 
 // Get all doctors (for patient view)
-exports.getAllDoctors = async (req, res, next) => {
+export const getAllDoctors = async (req, res, next) => {
   try {
     const doctors = await User.find({ role: "doctor" }).select("-password");
     res.status(200).json(doctors);
@@ -55,7 +55,7 @@ exports.getAllDoctors = async (req, res, next) => {
 };
 
 // Get user dashboard stats
-exports.getDashboardStats = async (req, res, next) => {
+export const getDashboardStats = async (req, res, next) => {
   try {
     const stats = {
       appointments: await Appointment.countDocuments({ patient: req.user.id }),

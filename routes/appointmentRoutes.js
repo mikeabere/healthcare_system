@@ -1,12 +1,12 @@
 import express from "express";
 const router = express.Router();
 import {bookAppointment} from "../controllers/appointmentController.js";
-import { protect, restrictTo } from "../middlewares/auth.js";
+//import { protect, restrictTo } from "../middlewares/auth.js";
 
 // Protected routes
-router.use(protect);
+//router.use(protect);
 
-router.post("/", restrictTo("patient"),bookAppointment);
+//router.post("/", restrictTo("patient"),bookAppointment);
 // router.get("/my-appointments", appointmentController.getMyAppointments);
 // router.patch("/:id/cancel", appointmentController.cancelAppointment);
 
@@ -18,7 +18,7 @@ router.post("/", restrictTo("patient"),bookAppointment);
 // );
 
 // Admin-only routes
-router.use(restrictTo("admin"));
+//router.use(restrictTo("admin"));
 // router.get("/", appointmentController.getAllAppointments);
 
 export default router;

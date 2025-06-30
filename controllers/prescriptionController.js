@@ -1,7 +1,7 @@
 import cloudinary from "cloudinary";
 import Prescription from "../models/Prescription.js";
 
-exports.uploadPrescription = async (req, res) => {
+export const uploadPrescription = async (req, res) => {
   try {
     const result = await cloudinary.uploader.upload(req.file.path, {
       folder: "prescriptions",
@@ -20,7 +20,7 @@ exports.uploadPrescription = async (req, res) => {
   }
 };
 
-exports.getPatientPrescriptions = async (req, res) => {
+export const getPatientPrescriptions = async (req, res) => {
   const prescriptions = await Prescription.find({ patient: req.user.id })
     .populate("doctor", "name specialization") // Include doctor details
     .sort({ createdAt: -1 }); // Newest first

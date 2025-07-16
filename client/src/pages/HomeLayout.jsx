@@ -5,6 +5,7 @@ const HomeLayout = () => {
     <>
       {/* add things like Navbar */}
       {/* <h1>home layout</h1> */}
+     
       <Outlet />
     </>
   );

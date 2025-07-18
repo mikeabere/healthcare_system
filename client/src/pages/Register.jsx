@@ -1,12 +1,12 @@
 import React from 'react'
 import { Logo, FormRow } from "../components";
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
-import {Link} from 'react-router-dom';
+import {Link, Form} from 'react-router-dom';
 
 function Register() {
   return (
     <Wrapper>
-      <form className="form">
+      <Form className="form">
         <Logo />
         <h4>Register</h4>
         <FormRow type="text" name="name" />
@@ -25,7 +25,7 @@ function Register() {
             Login
           </Link>
         </p>
-      </form>
+      </Form>
     </Wrapper>
   );
 }

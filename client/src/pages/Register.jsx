@@ -6,7 +6,7 @@ import {Link, Form} from 'react-router-dom';
 function Register() {
   return (
     <Wrapper>
-      <Form className="form">
+      <Form method="post" className="form">
         <Logo />
         <h4>Register</h4>
         <FormRow type="text" name="name" />

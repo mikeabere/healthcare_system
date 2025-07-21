@@ -6,7 +6,7 @@ import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
 function Login() {
   return (
     <Wrapper>
-      <Form className="form">
+      <Form method="post" className="form">
         <Logo />
         <h4>Login</h4>
         <FormRow type="email" name="email" defaultValue="john@gmail.com" />

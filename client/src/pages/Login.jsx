@@ -22,6 +22,11 @@ function Login() {
           <Link to="/register" className="member-btn">
             Register
           </Link>
+          <p>
+            <Link to="/forgot-password" className="member-btn">
+              Forgot password
+            </Link>
+          </p>
         </p>
       </Form>
     </Wrapper>

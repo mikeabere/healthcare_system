@@ -1,5 +1,5 @@
 import { google } from "googleapis";
-import Appointment from "../models/Appointment.js";
+import Appointment from "../models/AppointmentModel.js";
 
 const calendar = google.calendar({
   version: "v3",

@@ -14,9 +14,10 @@ const UserSchema = new mongoose.Schema({
   specialization: { type: String }, // For doctors
   address: { type: String },
   dateOfBirth:{ type: Date},
-  createdAt,
-  updatedAt,
-});
+
+},
+{ timestamps: true }
+);
 
 // Hash password before saving
 // UserSchema.pre("save", async function (next) {

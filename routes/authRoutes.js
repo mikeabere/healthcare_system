@@ -1,10 +1,10 @@
 import express from "express";
 const router = express.Router();
 import {register, logout, login} from "../controllers/authController.js";
-import {
-  validateRegisterInput,
-  validateLoginInput,
-} from "../middleware/validationMiddleware.js";
+// import {
+//   validateRegisterInput,
+//   validateLoginInput,
+// } from "../middlewares/validationMiddleware.js";
 
 import rateLimiter from 'express-rate-limit';
 
@@ -14,8 +14,8 @@ const apiLimiter = rateLimiter({
   message: { msg: 'IP rate limit exceeded, retry in 15 minutes.' },
 });
 
-router.post("/api/auth/register", apiLimiter,  validateRegisterInput, register);
-router.post("/api/auth/login", apiLimiter, validateLoginInput, login);
+router.post("/register", apiLimiter, register);
+router.post("/login", apiLimiter, login);
 router.get('/logout', logout);
 
 // Password reset routes

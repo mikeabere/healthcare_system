@@ -6,11 +6,14 @@ import {
   Login,
   DashboardLayout,
   Error,
-  Landing
+  Landing,
+  ForgotPassword
 } from "./pages";
 
 import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
+//import { action as forgotPasswordAction } from "./pages/ForgotPassword";
+
 
 const router = createBrowserRouter([
   {
@@ -31,6 +34,11 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
         action: loginAction,
+      },
+      {
+        path: "/forgot-password",
+        element: <ForgotPassword />,
+        //action: forgotPasswordAction,
       },
       {
         path: "/dashboard",

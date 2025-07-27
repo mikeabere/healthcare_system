@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import {register, logout, login} from "../controllers/authController.js";
+import {register, logout, login, forgotPassword, resetPassword} from "../controllers/authController.js";
 // import {
 //   validateRegisterInput,
 //   validateLoginInput,
@@ -19,7 +19,7 @@ router.post("/login", apiLimiter, login);
 router.get('/logout', logout);
 
 // Password reset routes
-// router.post("/forgot-password", authController.forgotPassword);
-// router.patch("/reset-password/:token", authController.resetPassword);
+ router.post("/forgot-password", forgotPassword);
+ router.patch("/reset-password/:token", resetPassword);
 
 export default router;

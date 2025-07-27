@@ -6,3 +6,4 @@ export { default as Error } from "./Error";
 export { default as Profile } from "./Profile";
 export { default as Stats } from "./Stats";
 export { default as Landing } from "./Landing";
+export { default as ForgotPassword } from "./ForgotPassword";

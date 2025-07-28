@@ -1,7 +1,7 @@
 import { useState } from "react";
-//import axios from "axios";
-import styled from "styled-components";
+import { useParams, useNavigate } from "react-router-dom";
 import customFetch from "../utils/customFetch";
+import styled from "styled-components";
 
 const Container = styled.div`
   min-height: 100vh;
@@ -79,23 +79,37 @@ const Message = styled.div`
   text-align: center;
 `;
 
-const ForgotPassword = () => {
-  const [email, setEmail] = useState("");
+const ResetPassword = () => {
+  const { token } = useParams();
+  const navigate = useNavigate();
+
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleForgotPassword = async (e) => {
+  const handleResetPassword = async (e) => {
     e.preventDefault();
     setMessage("");
     setError("");
-    setLoading(true);
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
 
     try {
-      const { data } = customFetch.post("/auth/forgot-password", { email });
+      setLoading(true);
+      const { data } = customFetch.post(`/auth/reset-password/${token}`, {
+        password,
+      });
       setMessage(data.message);
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     } catch (err) {
-      setError(err.response?.data?.message || "Something went wrong.");
+      setError(err.response?.data?.message || "Invalid or expired token.");
     } finally {
       setLoading(false);
     }
@@ -104,23 +118,32 @@ const ForgotPassword = () => {
   return (
     <Container>
       <Card>
-        <Title>Forgot Password</Title>
+        <Title>Reset Password</Title>
 
         {message && <Message>{message}</Message>}
         {error && <Message error>{error}</Message>}
 
-        <form onSubmit={handleForgotPassword}>
-          <Label>Email Address</Label>
+        <form onSubmit={handleResetPassword}>
+          <Label>New Password</Label>
           <Input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="password"
+            placeholder="Enter new password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+          <Label>Confirm New Password</Label>
+          <Input
+            type="password"
+            placeholder="Confirm new password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
 
           <Button type="submit" disabled={loading}>
-            {loading ? "Sending..." : "Send Reset Link"}
+            {loading ? "Resetting..." : "Reset Password"}
           </Button>
         </form>
       </Card>
@@ -128,4 +151,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default ResetPassword;

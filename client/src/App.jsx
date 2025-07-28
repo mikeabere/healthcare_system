@@ -7,7 +7,8 @@ import {
   DashboardLayout,
   Error,
   Landing,
-  ForgotPassword
+  ForgotPassword,
+  ResetPassword
 } from "./pages";
 
 import { action as registerAction } from "./pages/Register";
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         path: "/forgot-password",
         element: <ForgotPassword />,
         //action: forgotPasswordAction,
+      },
+      {
+        path: "/reset-password/:token",
+        element: <ResetPassword />,
       },
       {
         path: "/dashboard",

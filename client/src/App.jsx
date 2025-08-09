@@ -15,6 +15,14 @@ import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
 //import { action as forgotPasswordAction } from "./pages/ForgotPassword";
 
+const checkDefaultTheme = () => {
+  const isDarkTheme = localStorage.getItem("darkTheme") === "true";
+  document.body.classList.toggle("dark-theme", isDarkTheme);
+  return isDarkTheme;
+};
+
+const isDarkThemeEnabled = checkDefaultTheme();
+
 
 const router = createBrowserRouter([
   {
@@ -47,7 +55,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <DashboardLayout />,
+        element: <DashboardLayout isDarkThemeEnabled={isDarkThemeEnabled} />,
       },
     ],
   },

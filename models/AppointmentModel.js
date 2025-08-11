@@ -11,9 +11,11 @@ const AppointmentSchema = new mongoose.Schema({
   notes: String,
   status: {
     type: String,
-    enum: ["pending", "confirmed", "cancelled"],
+    enum: ["pending", "confirmed", "cancelled", "completed"],
     default: "pending",
   },
+  symptoms: String,
+  consultationType: String, //can be enum
   googleCalendarEventId: { type: String }, // For Google Calendar sync
 });
 

@@ -17,7 +17,7 @@ const medicalRecordSchema = new mongoose.Schema({
   testResults: String,
   notes: String,
   attachments: String,
-  createdAt, // will look
+  //createdAt, // will look
 });
 
 export default mongoose.model("MedicalRecord", medicalRecordSchema);

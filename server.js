@@ -11,6 +11,8 @@ import morgan from "morgan";
 //routes
 import authRoutes from"./routes/authRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
+import doctorRoutes from "./routes/doctorRoutes.js";
+import patientRoutes from "./routes/patientRoutes.js";
 //import { log } from "console";
 
 
@@ -27,6 +29,8 @@ if(process.env.NODE_ENV === 'development'){
 // Routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/appointments", appointmentRoutes);
+app.use("/api/v1/doctors", doctorRoutes);
+app.use("/api/v1/patients", patientRoutes);
 
 // Error handling middleware
 

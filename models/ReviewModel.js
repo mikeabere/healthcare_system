@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const AppointmentSchema = new mongoose.Schema({
+const reviewSchema = new mongoose.Schema({
   patientId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -21,4 +21,4 @@ const AppointmentSchema = new mongoose.Schema({
   createdAt, //will look
 });
 
-export default mongoose.model("Appointment", AppointmentSchema);
+export default mongoose.model("Review", reviewSchema);

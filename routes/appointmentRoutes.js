@@ -1,13 +1,13 @@
 import express from "express";
 const router = express.Router();
-import {bookAppointment} from "../controllers/appointmentController.js";
+import { appointmentController } from "../controllers/appointmentController.js";
 //import { protect, restrictTo } from "../middlewares/auth.js";
 
 // Protected routes
 //router.use(protect);
 
-//router.post("/", restrictTo("patient"),bookAppointment);
-// router.get("/my-appointments", appointmentController.getMyAppointments);
+router.post("/",appointmentController.bookAppointment);
+router.get("/my-appointments", appointmentController.getMyAppointments);
 // router.patch("/:id/cancel", appointmentController.cancelAppointment);
 
 // Doctor-only routes

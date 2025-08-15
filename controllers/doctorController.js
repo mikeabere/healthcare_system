@@ -1,5 +1,5 @@
 import Doctor from "../models/DoctorModel.js";
-import User from "../models/UserModel.js";
+//import User from "../models/UserModel.js";
 import Appointment from "../models/AppointmentModel.js";
 import TimeSlot from "../models/TimeSlotModel.js";
 

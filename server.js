@@ -13,6 +13,7 @@ import authRoutes from"./routes/authRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
 import doctorRoutes from "./routes/doctorRoutes.js";
 import patientRoutes from "./routes/patientRoutes.js";
+import medicalRecordsRoutes from "./routes/medicalRecordRoutes.js";
 //import { log } from "console";
 
 
@@ -31,6 +32,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/appointments", appointmentRoutes);
 app.use("/api/v1/doctors", doctorRoutes);
 app.use("/api/v1/patients", patientRoutes);
+app.use("/api/v1/medicalrecords", medicalRecordsRoutes);
 
 // Error handling middleware
 

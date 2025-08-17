@@ -9,10 +9,10 @@ export const adminController = {
   getDashboardStats: async (req, res) => {
     try {
       // Check admin role
-      if (req.user.role !== 'admin') {
+      if (req.user.role !== "admin") {
         return res.status(403).json({
           success: false,
-          message: 'Access denied. Admin role required.'
+          message: "Access denied. Admin role required.",
         });
       }
 
@@ -21,47 +21,58 @@ export const adminController = {
       const totalDoctors = await Doctor.countDocuments();
       const totalPatients = await Patient.countDocuments();
       const totalAppointments = await Appointment.countDocuments();
-      
-      const pendingAppointments = await Appointment.countDocuments({ status: 'pending' });
-      const confirmedAppointments = await Appointment.countDocuments({ status: 'confirmed' });
-      const completedAppointments = await Appointment.countDocuments({ status: 'completed' });
-      const cancelledAppointments = await Appointment.countDocuments({ status: 'cancelled' });
-    
+
+      const pendingAppointments = await Appointment.countDocuments({
+        status: "pending",
+      });
+      const confirmedAppointments = await Appointment.countDocuments({
+        status: "confirmed",
+      });
+      const completedAppointments = await Appointment.countDocuments({
+        status: "completed",
+      });
+      const cancelledAppointments = await Appointment.countDocuments({
+        status: "cancelled",
+      });
 
       // Revenue calculation (this month)
-      const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+      const startOfMonth = new Date(
+        new Date().getFullYear(),
+        new Date().getMonth(),
+        1
+      );
       const monthlyRevenue = await Appointment.aggregate([
         {
           $match: {
-            status: 'completed',
-            appointmentDate: { $gte: startOfMonth }
-          }
+            status: "completed",
+            appointmentDate: { $gte: startOfMonth },
+          },
         },
         {
           $lookup: {
-            from: 'doctors',
-            localField: 'doctorId',
-            foreignField: '_id',
-            as: 'doctor'
-          }
+            from: "doctors",
+            localField: "doctorId",
+            foreignField: "_id",
+            as: "doctor",
+          },
         },
         {
           $group: {
             _id: null,
-            total: { $sum: { $arrayElemAt: ['$doctor.consultationFee', 0] } }
-          }
-        }
+            total: { $sum: { $arrayElemAt: ["$doctor.consultationFee", 0] } },
+          },
+        },
       ]);
 
       // Recent appointments
       const recentAppointments = await Appointment.find()
-        .populate('patientId', 'firstName lastName')
+        .populate("patientId", "firstName lastName")
         .populate({
-          path: 'doctorId',
+          path: "doctorId",
           populate: {
-            path: 'userId',
-            select: 'firstName lastName'
-          }
+            path: "userId",
+            select: "firstName lastName",
+          },
         })
         .sort({ createdAt: -1 })
         .limit(5);
@@ -73,18 +84,18 @@ export const adminController = {
       const appointmentTrends = await Appointment.aggregate([
         {
           $match: {
-            createdAt: { $gte: sevenDaysAgo }
-          }
+            createdAt: { $gte: sevenDaysAgo },
+          },
         },
         {
           $group: {
             _id: {
-              $dateToString: { format: '%Y-%m-%d', date: '$createdAt' }
+              $dateToString: { format: "%Y-%m-%d", date: "$createdAt" },
             },
-            count: { $sum: 1 }
-          }
+            count: { $sum: 1 },
+          },
         },
-        { $sort: { _id: 1 } }
+        { $sort: { _id: 1 } },
       ]);
 
       res.status(200).json({
@@ -97,5 +108,13 @@ export const adminController = {
             totalAppoint,
           },
         },
-       });
-    };
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: "Server error while",
+        error: error.message,
+      });
+    }
+  }
+};

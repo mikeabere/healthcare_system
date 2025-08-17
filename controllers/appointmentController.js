@@ -8,7 +8,7 @@ import Patient from '../models/PatientModel.js';
 
 export const appointmentController = {
   // Book new appointment
-  bookAppointment: async (req, res) => {
+    bookAppointment: async (req, res) => {
     try {
       const {
         doctorId,
@@ -93,7 +93,7 @@ export const appointmentController = {
   },
 
   // Get appointments
-  getAppointments: async (req, res) => {
+   getAppointments: async (req, res) => {
     try {
       const { status, date, page = 1, limit = 10 } = req.query;
 
@@ -156,7 +156,7 @@ export const appointmentController = {
   },
 
   // Update appointment
-  updateAppointment: async (req, res) => {
+   updateAppointment:  async (req, res) => {
     try {
       const { id } = req.params;
       const { symptoms, notes } = req.body;
@@ -216,7 +216,7 @@ export const appointmentController = {
   },
 
   // Cancel appointment
-  cancelAppointment: async (req, res) => {
+   cancelAppointment: async (req, res) => {
     try {
       const { id } = req.params;
       const { reason } = req.body;
@@ -295,7 +295,7 @@ export const appointmentController = {
   },
 
   // Confirm appointment (doctor only)
-  confirmAppointment: async (req, res) => {
+   confirmAppointment: async (req, res) => {
     try {
       const { id } = req.params;
       const { meetingLink } = req.body;
@@ -356,7 +356,7 @@ export const appointmentController = {
   },
 
   // Complete appointment (doctor only)
-  completeAppointment: async (req, res) => {
+   completeAppointment: async (req, res) => {
     try {
       const { id } = req.params;
       const { diagnosis, prescription, notes } = req.body;

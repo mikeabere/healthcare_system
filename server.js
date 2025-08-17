@@ -14,12 +14,14 @@ import appointmentRoutes from "./routes/appointmentRoutes.js";
 import doctorRoutes from "./routes/doctorRoutes.js";
 import patientRoutes from "./routes/patientRoutes.js";
 import medicalRecordsRoutes from "./routes/medicalRecordRoutes.js";
+import notificationRoutes from "./routes/notificationRoutes.js";
+import reviewRoutes from "./routes/reviewRoutes.js";
 //import { log } from "console";
 
 
 
 // Middleware
-app.use(express.json());// middlwware to accept json
+app.use(express.json());// middleware to accept json
 app.use(cors());
 
 if(process.env.NODE_ENV === 'development'){
@@ -33,6 +35,8 @@ app.use("/api/v1/appointments", appointmentRoutes);
 app.use("/api/v1/doctors", doctorRoutes);
 app.use("/api/v1/patients", patientRoutes);
 app.use("/api/v1/medicalrecords", medicalRecordsRoutes);
+app.use("/api/v1/notifications", notificationRoutes);
+app.use("/api/v1/reviews", reviewRoutes);
 
 // Error handling middleware
 

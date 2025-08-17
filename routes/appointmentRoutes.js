@@ -7,7 +7,7 @@ import { appointmentController } from "../controllers/appointmentController.js";
 //router.use(protect);
 
 router.post("/",appointmentController.bookAppointment);
-router.get("/my-appointments", appointmentController.getMyAppointments);
+router.get("/my-appointments", appointmentController.getAppointments);
 // router.patch("/:id/cancel", appointmentController.cancelAppointment);
 
 // Doctor-only routes

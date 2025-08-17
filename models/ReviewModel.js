@@ -18,7 +18,7 @@ const reviewSchema = new mongoose.Schema({
   },
   rating: String,
   comment: String,
-  createdAt, //will look
+  //createdAt, //will look
 });
 
 export default mongoose.model("Review", reviewSchema);

@@ -1,6 +1,6 @@
 import Review from "../models/ReviewModel.js";
 import Appointment from "../models/AppointmentModel.js";
-//import Doctor from '../models/DoctorModel.js';
+import Doctor from '../models/DoctorModel.js';
 import Patient from '../models/PatientModel.js';
 
 export const reviewController = {

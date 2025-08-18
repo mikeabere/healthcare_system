@@ -1,5 +1,4 @@
-// 4. PATIENT CONTROLLER
-// =============================================================================
+
 import Patient from "../models/PatientModel.js";
 import Appointment from "../models/AppointmentModel.js";
 import MedicalRecord from "../models/MedicalRecordModel.js";

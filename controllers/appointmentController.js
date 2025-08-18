@@ -387,7 +387,7 @@ export const appointmentController = {
 
       // Create medical record if diagnosis/prescription provided
       if (diagnosis || prescription) {
-        const MedicalRecord = require('../models/MedicalRecord');
+        const MedicalRecord = require('../models/MedicalRecordModel.js');
         const medicalRecord = new MedicalRecord({
           patientId: appointment.patientId,
           doctorId: appointment.doctorId,

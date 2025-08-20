@@ -6,8 +6,15 @@ import { appointmentController } from "../controllers/appointmentController.js";
 // Protected routes
 //router.use(protect);
 
-router.post("/",appointmentController.bookAppointment);
-router.get("/my-appointments", appointmentController.getAppointments);
+router.post("/appointments",appointmentController.bookAppointment);
+router.get("/appointments", appointmentController.getAppointments);
+router.put("/appointments/:id", appointmentController.updateAppointment);
+router.delete("/appointments/:id", appointmentController.cancelAppointment);
+router.post("/appointments/:id/confirm", appointmentController.confirmAppointment);
+router.post(
+  "/appointments/:id/complete",
+  appointmentController.completeAppointment
+);
 // router.patch("/:id/cancel", appointmentController.cancelAppointment);
 
 // Doctor-only routes

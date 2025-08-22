@@ -1,6 +1,7 @@
 import MedicalRecord from "../models/MedicalRecordModel.js";
 import Doctor from '../models/DoctorModel.js';
 import Patient from '../models/PatientModel.js';
+import User from "../models/UserModel.js";
 
 export const medicalRecordController = {
   // Create medical record
@@ -17,7 +18,7 @@ export const medicalRecordController = {
       } = req.body;
 
       // Check if user is doctor
-      const doctor = await Doctor.findOne({ userId: req.user.userId });
+      const doctor = await User.findOne({ userId: req.user.userId }); //was using req.user userId: req.body.userId
       if (!doctor) {
         return res.status(403).json({
           success: false,

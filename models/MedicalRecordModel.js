@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const medicalRecordSchema = new mongoose.Schema({
-  patient: {
+  patientId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,

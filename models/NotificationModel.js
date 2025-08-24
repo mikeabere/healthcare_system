@@ -13,7 +13,7 @@ const NotificationSchema = new mongoose.Schema(
     type: String,
     isRead: String ,
   },
-  { timestamps: true }
+  { timestamps: true } //creates created at and updated at
 );
 
 

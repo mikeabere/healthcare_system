@@ -102,7 +102,7 @@ export const patientController = {
       if (insuranceInfo) updateData.insuranceInfo = insuranceInfo;
 
       const patient = await Patient.findOneAndUpdate(
-        { userId: req.user.userId },
+        { userId: req.user.userId }, //user id problem
         updateData,
         { new: true, runValidators: true }
       ).populate("userId", "firstName lastName email phone");

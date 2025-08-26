@@ -2,6 +2,7 @@
 import Patient from "../models/PatientModel.js";
 import Appointment from "../models/AppointmentModel.js";
 import MedicalRecord from "../models/MedicalRecordModel.js";
+//import { useId } from "react";
 
 export const patientController = {
   // Get all patients (for doctors/admin)
@@ -125,6 +126,7 @@ export const patientController = {
         message: "Server error while updating patient profile",
         error: error.message,
       });
+      
     }
   },
 

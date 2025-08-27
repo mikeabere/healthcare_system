@@ -1,4 +1,4 @@
-
+import User from "../models/UserModel.js";
 import Patient from "../models/PatientModel.js";
 import Appointment from "../models/AppointmentModel.js";
 import MedicalRecord from "../models/MedicalRecordModel.js";
@@ -103,10 +103,10 @@ export const patientController = {
       if (insuranceInfo) updateData.insuranceInfo = insuranceInfo;
 
       const patient = await Patient.findOneAndUpdate(
-        { userId: req.user.userId }, //user id problem
+        { userId: req.user.userId }, //user id problem // imported authenticateuser middleware in server.js
         updateData,
         { new: true, runValidators: true }
-      ).populate("userId", "firstName lastName email phone");
+      ).populate("userId", "firstName lastName email phone"); //remove or edit some fields
 
       if (!patient) {
         return res.status(404).json({
@@ -126,7 +126,6 @@ export const patientController = {
         message: "Server error while updating patient profile",
         error: error.message,
       });
-      
     }
   },
 
@@ -142,7 +141,7 @@ export const patientController = {
       }
 
       // Get medical records
-      
+
       const medicalRecords = await MedicalRecord.find({
         patientId: patient._id,
       })

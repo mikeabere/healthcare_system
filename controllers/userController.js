@@ -1,6 +1,6 @@
-import User from "../models/User.js";
-import Prescription from"../models/Prescription.js";
-import Appointment from "../models/Appointment.js";
+import User from "../models/UserModel.js";
+import Prescription from"../models/PrescriptionModel.js";
+import Appointment from "../models/AppointmentModel.js";
 import { StatusCodes } from "http-status-codes";
 
 

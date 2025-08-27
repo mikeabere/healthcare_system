@@ -8,10 +8,10 @@ const PatientSchema = new mongoose.Schema({
   },
   gender: String,
   bloodGroup: String,
-  allergies: String,
-  medicalHistory: String,
-  emergencyContact: Number,
-  insuranceInfo: String,
+  allergies:Array, 
+  medicalHistory: Array,
+  emergencyContact: Object, // was number
+  insuranceInfo: Object, //was string
 });
 
 export default mongoose.model("Patient", PatientSchema);

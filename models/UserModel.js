@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema(
     },
     specialization: { type: String }, // For doctors
     address: { type: String },
+    isVerified: Boolean,
     dateOfBirth: { type: Date },
     resetPasswordToken: {
       type: String,

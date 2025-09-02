@@ -11,7 +11,7 @@ export const patientController = {
       const { page = 1, limit = 10, search } = req.query;
 
       let query = {};
-      const patients = await Patient.find(query)
+      const patients = await Patient.find(query) // to find solution of endpoints in postman
         .populate("userId", "firstName lastName email phone profileImage")
         .limit(limit * 1)
         .skip((page - 1) * limit)
